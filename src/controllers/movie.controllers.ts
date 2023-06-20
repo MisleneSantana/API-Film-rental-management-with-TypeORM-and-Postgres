@@ -15,7 +15,7 @@ const retrieveMoviesController = async (req: Request, res: Response): Promise<Re
 };
 
 const retrieveMovieByIdController = async (req: Request, res: Response): Promise<Response> => {
-  const movieById: Movie = await readMovieByIdService(req.params.id);
+  const movieById: Movie | null = await readMovieByIdService(req.params.id);
   return res.status(200).json(movieById);
 };
 

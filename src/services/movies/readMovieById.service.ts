@@ -2,7 +2,7 @@ import { Repository } from 'typeorm';
 import { AppDataSource } from '../../data-source';
 import { Movie } from '../../entities/index';
 
-const readMovieByIdService = async (movieId: string): Promise<Movie> => {
+const readMovieByIdService = async (movieId: string): Promise<Movie | null> => {
   const movieRepo: Repository<Movie> = AppDataSource.getRepository(Movie);
   return await movieRepo.findOneBy({ id: parseInt(movieId) });
 };

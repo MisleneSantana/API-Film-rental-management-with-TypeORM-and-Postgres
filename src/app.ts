@@ -1,7 +1,7 @@
 import 'express-async-errors';
 import express, { Application } from 'express';
 import { handleErrors } from './error';
-import { movieRouter } from './routes/movie.router';
+import { movieRouter } from './routes/movie.routes';
 
 // Config. iniciais da aplicação
 const app: Application = express();
