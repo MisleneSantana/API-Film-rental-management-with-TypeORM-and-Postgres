@@ -3,7 +3,7 @@ import 'reflect-metadata';
 import path from 'path';
 import { DataSource, DataSourceOptions } from 'typeorm';
 
-// Arquivo que possui as config. de conexão com o banco de dados
+// Arquivo que possui as config. de conexão com o TypeORM
 
 const dataSourceConfig = (): DataSourceOptions => {
   const entitiesPath: string = path.join(__dirname, './entities/**.{ts,js}');
@@ -28,8 +28,8 @@ const dataSourceConfig = (): DataSourceOptions => {
   return {
     type: 'postgres',
     url: dbUrl,
-    // synchronize: false,
-    logging: true,
+    synchronize: false,
+    // logging: true,
     entities: [entitiesPath],
     migrations: [migrationPath],
   };

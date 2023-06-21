@@ -1,6 +1,6 @@
 import 'express-async-errors';
 import express, { Application } from 'express';
-import { movieRouter } from './routes/movie.router';
+import { movieRouter } from './routers/movie.router';
 import { handleError } from './middlewares/handleError.middleware';
 
 // Config. iniciais da aplicação

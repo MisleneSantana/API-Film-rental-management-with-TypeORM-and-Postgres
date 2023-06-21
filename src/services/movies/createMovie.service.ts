@@ -1,4 +1,4 @@
-import { TMovieCreate, TMovieRepo } from '../../interfaces/movie.interface';
+import { TMovieCreate, TMovieRepo } from '../../interfaces/movie.interfaces';
 import { AppDataSource } from '../../data-source';
 import { Movie } from '../../entities/index';
 

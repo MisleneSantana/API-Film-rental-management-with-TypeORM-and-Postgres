@@ -1,10 +1,11 @@
 import { Movie } from '../../entities/index';
 import { AppDataSource } from '../../data-source';
-import { TMovieRepo, TMovieUpdate } from '../../interfaces/movie.interface';
+import { TMovieRepo, TMovieUpdate } from '../../interfaces/movie.interfaces';
 
-const updateMovieService = async (movieBody: TMovieUpdate, movie: Movie): Promise<Movie> => {
+const updateMovieService = async (foundMovie: Movie, movieData: TMovieUpdate): Promise<Movie> => {
   const movieRepo: TMovieRepo = AppDataSource.getRepository(Movie);
-  return await movieRepo.save({ ...movie, ...movieBody });
+
+  return await movieRepo.save({ ...foundMovie, ...movieData });
 };
 
 export { updateMovieService };
