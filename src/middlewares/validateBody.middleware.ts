@@ -2,10 +2,9 @@ import { NextFunction, Request, Response } from 'express';
 import { z } from 'zod';
 
 const validateBodyMiddleware =
-  (schema: z.AnyZodObject) =>
+  (schema: z.ZodTypeAny) =>
   (req: Request, res: Response, next: NextFunction): void => {
-    const validatedBody = schema.parse(req.body);
-    res.locals = { ...res.locals, validatedBody };
+    req.body = schema.parse(req.body);
 
     return next();
   };

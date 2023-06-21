@@ -1,17 +1,22 @@
 import { NextFunction, Request, Response } from 'express';
-import { TMovie, TMovieResult } from '../interfaces/movie.interface';
-import { AppError } from '../error';
+import { TMovieRepo } from '../interfaces/movie.interface';
+import { AppError } from '../errors/error';
+import { AppDataSource } from '../data-source';
+import { Movie } from '../entities/index';
 
-// const verifyNameExistsMiddleware = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-//   const { name } = req.body;
+const verifyNameExistsMiddleware = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  const movieName: string = req.body.name;
 
-//   const queryResult: TMovieResult = await client.query('SELECT * FROM "movies" WHERE name = $1;', [name]);
+  const repo: TMovieRepo = AppDataSource.getRepository(Movie);
+  const movie = await repo.findOneBy({ name: movieName });
 
-//   const movieName: TMovie = queryResult.rows[0];
-//   if (movieName) {
-//     throw new AppError('Name already exists', 409);
-//   }
-//   return next();
-// };
+  if (movie) {
+    throw new AppError('Movie already exists.', 409);
+  }
 
-// export { verifyNameExistsMiddleware };
+  res.locals = { ...res.locals, movie };
+
+  return next();
+};
+
+export { verifyNameExistsMiddleware };
