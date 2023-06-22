@@ -8,9 +8,9 @@ export const handleError = (error: unknown, req: Request, res: Response, next: N
   }
 
   if (error instanceof z.ZodError) {
-    return res.status(400).json(error.flatten().fieldErrors);
+    return res.status(400).json({ message: error.flatten().fieldErrors });
   }
 
   console.error(error);
-  return res.status(500).json({ message: 'Internal Server Error.' });
+  return res.status(500).json({ error: 'Internal Server Error.' });
 };
