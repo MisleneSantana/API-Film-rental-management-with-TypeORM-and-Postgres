@@ -1,8 +1,5 @@
-import app from './app';
+import { app } from './app';
 import { AppDataSource } from './data-source';
-
-// Inicia a conexão com o banco de dados
-// Métoodo initialize inicializa a conexão com o banco de dados
 
 AppDataSource.initialize()
   .then(async () => {

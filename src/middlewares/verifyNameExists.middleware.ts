@@ -4,7 +4,7 @@ import { AppError } from '../errors/error';
 import { AppDataSource } from '../data-source';
 import { Movie } from '../entities/index';
 
-const verifyNameExistsMiddleware = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+export const verifyNameExistsMiddleware = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   const movieName: string = req.body.name;
 
   if (!movieName) {
@@ -20,5 +20,3 @@ const verifyNameExistsMiddleware = async (req: Request, res: Response, next: Nex
 
   return next();
 };
-
-export { verifyNameExistsMiddleware };
